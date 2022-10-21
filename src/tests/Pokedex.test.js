@@ -1,6 +1,7 @@
 import React from 'react';
 // import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
@@ -53,5 +54,11 @@ describe('Pokedex component tests', () => {
     const allButton = screen.getByRole('button', { name: /all/i });
 
     expect(allButton).toBeEnabled();
+
+    userEvent.click(allButton);
+
+    const pikachu = screen.getByText(/pikachu/i);
+
+    expect(pikachu).toBeInTheDocument();
   });
 });
